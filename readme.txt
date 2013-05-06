@@ -41,7 +41,7 @@ function Master(name, school, institute) {
 }
 Master.prototype = {
 	say : function(other, msg) {
-		this.callBase(other, msg);
+		this.callBase("say", other, msg);
 		console.log("My institute is "+this.insititute);
 	}
 }
