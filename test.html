@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS-OO test</title>
+    <meta content="text/html" charset="utf-8">
+    <script type="text/javascript" src="js-oo.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		function Person(name) {
+			this.name = name;
+		}
+		Person.prototype = {
+			say : function(other) {
+				console.log("I'm a person. my name is " + this.name);
+				console.log("hello " + other);
+			},
+			eat : function() {
+				console.log("person eat");
+			}
+		}
+
+		function Student(name, school) {
+			this.base(name);
+			this.school = school;
+		}
+		Student.prototype = {
+			say : function(other, msg) {
+				this.callBase("say", other);
+				console.log("I'm a student. My school is " + this.school);
+				console.log("msg is " + msg);
+			}
+		}
+		$.inherit(Student, Person);
+
+		function Master(name, school, insititute) {
+			this.base(name, school);
+			this.insititute = insititute;
+		}
+		Master.prototype = {
+			say : function(other, msg) {
+				this.callBase("say", other, msg);
+				console.log("My institute is "+this.insititute);
+			}
+		}
+		$.inherit(Master, Student);
+
+		var p = new Person("XiaoQiang");
+		p.say("world");
+		p.eat();
+		var s = new Student("XiaoMing", "Nanjing University");
+		s.say("world", "I love you.");
+		s.eat();
+		var m = new Master("XiaoGe", "Nanjing University", "Software Insititute.");
+		m.say("world", "I love Daisy.");
+		s.eat();
+	</script>
+</body>
+</html>
